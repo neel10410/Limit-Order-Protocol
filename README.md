@@ -23,8 +23,8 @@ The Limit Order Protocol is a smart contract built using the Foundry framework t
 
 - **Clone the Repository**
    
-      git clone https://github.com/neel10410/limitOrder.git
-      cd limitOrder
+      git clone https://github.com/neel10410/Limit-Order-Protocol.git
+      cd Limit-Order-Protocol
    
 - **Install Dependencies**
   
