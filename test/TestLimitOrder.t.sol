@@ -283,8 +283,7 @@ contract TestLimitOrder is Test {
         // Create a TokensForToken order
         createOrderTokensForToken();
 
-        // Execute orders
-        console.log("b1", Link.balanceOf(trader));
+        // Execute order
         vm.startPrank(owner); // Ensure this has the necessary permissions
         limitOrder.executeOrders(2, 1);
         vm.stopPrank();
@@ -382,8 +381,6 @@ contract TestLimitOrder is Test {
             orderId
         );
         assertEq(uint(order.orderState), uint(LimitOrder.OrderState.Finished));
-        // uint balanceBefore = Link.balanceOf(trader);
         assertTrue(Link.balanceOf(trader) > 0); // Ensure trader received Link tokens
-        console.log("b2", Link.balanceOf(trader));
     }
 }
