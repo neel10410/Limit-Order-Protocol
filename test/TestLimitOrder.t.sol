@@ -33,7 +33,7 @@ contract TestLimitOrder is Test {
         Weth = ERC20(uniswapRouter.WETH());
 
         vm.prank(owner);
-        vm.allowCheatcodes(0x4a434F0a9A4400a1365a0F3bFe0797e3703F81db); // have to change
+        vm.allowCheatcodes(0x4a434F0a9A4400a1365a0F3bFe0797e3703F81db);
         DeployLimitOrder deployLimitOrder = new DeployLimitOrder();
         limitOrder = deployLimitOrder.run();
 
@@ -284,6 +284,7 @@ contract TestLimitOrder is Test {
         createOrderTokensForToken();
 
         // Execute orders
+        console.log("b1", Link.balanceOf(trader));
         vm.startPrank(owner); // Ensure this has the necessary permissions
         limitOrder.executeOrders(2, 1);
         vm.stopPrank();
@@ -302,7 +303,7 @@ contract TestLimitOrder is Test {
             assetIn: uniswapRouter.WETH(),
             assetOut: address(Link),
             assetInOffered: 1 ether,
-            assetOutExpected: 1,
+            assetOutExpected: 224570250888692826,
             slippage: 0,
             path: path,
             executorFee: 0.01 ether,
@@ -324,7 +325,7 @@ contract TestLimitOrder is Test {
             assetIn: address(Dai),
             assetOut: uniswapRouter.WETH(),
             assetInOffered: 1 ether,
-            assetOutExpected: 1 ether,
+            assetOutExpected: 224570250888692826,
             slippage: 0,
             path: path,
             executorFee: 0.01 ether,
@@ -347,7 +348,7 @@ contract TestLimitOrder is Test {
             assetIn: address(Dai),
             assetOut: address(Link),
             assetInOffered: 1 ether,
-            assetOutExpected: 1,
+            assetOutExpected: 224570250888692826,
             slippage: 0,
             path: path,
             executorFee: 0.01 ether,
@@ -381,7 +382,7 @@ contract TestLimitOrder is Test {
             orderId
         );
         assertEq(uint(order.orderState), uint(LimitOrder.OrderState.Finished));
-        uint balanceBefore = Link.balanceOf(trader);
+        // uint balanceBefore = Link.balanceOf(trader);
         assertTrue(Link.balanceOf(trader) > 0); // Ensure trader received Link tokens
         console.log("b2", Link.balanceOf(trader));
     }
